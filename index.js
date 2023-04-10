@@ -1,18 +1,22 @@
-const express = require("express");
+import express from "express"
+import connectDB from "./db/connect.js"
+import dotenv from "dotenv"
+
+dotenv.config()
 
 const app = express();
+
 const PORT = process.env.PORT || 5000;
-const todos = require("./routes/todoRoutes");
-const connectDB = require("./db/connect");
-const { getAllTodos } = require("./controllers/todosController");
-require("dotenv").config();
-// MIDDLEWARE
-app.use(express.json());
 
-// ROUTES
-app.get("/", getAllTodos);
+// // ROUTES
 
-app.use("/api", todos);
+// app.get("/api/products", (req, res) => {
+//   res.send("Products")
+// });
+// app.get("/api/products/:id", (req, res) => {
+//   const product = products.find(p => p._id === req.params.id)
+//   res.send("Product")
+// });
 
 const start = async () => {
   try {

@@ -1,8 +1,9 @@
 {
-  "name": "todo-backend",
+  "name": "teezar-backend",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "start": "nodemon index.js",
     "build": "node index.js"
