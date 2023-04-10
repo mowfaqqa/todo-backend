@@ -2,21 +2,15 @@ import express from "express"
 import connectDB from "./db/connect.js"
 import dotenv from "dotenv"
 
+import productRoutes from './routes/productRoutes.js'
+
 dotenv.config()
 
 const app = express();
 
 const PORT = process.env.PORT || 5000;
 
-// // ROUTES
-
-// app.get("/api/products", (req, res) => {
-//   res.send("Products")
-// });
-// app.get("/api/products/:id", (req, res) => {
-//   const product = products.find(p => p._id === req.params.id)
-//   res.send("Product")
-// });
+app.use('/api/products', productRoutes)
 
 const start = async () => {
   try {
