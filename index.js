@@ -3,15 +3,19 @@ import connectDB from "./db/connect.js";
 import dotenv from "dotenv";
 
 import productRoutes from "./routes/productRoutes.js";
+import userRoutes from "./routes/userRoutes.js";
 import { errorHandler, notFound } from "./middleware/errorMiddleware.js";
 
 dotenv.config();
+const PORT = process.env.PORT || 5000;
 
 const app = express();
 
-const PORT = process.env.PORT || 5000;
+app.use(express.json())
+
 // ROUTES
 app.use("/api/products", productRoutes);
+app.use("/api/users", userRoutes);
 
 // error handler middleware
 app.use(notFound);
