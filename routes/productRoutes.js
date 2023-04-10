@@ -14,9 +14,8 @@ router.get(
   })
 );
 
-// #description Fetch single products
-// #route GET /api/products/:id
-
+// description - Fetch single products
+// method & route - GET /api/products/:id
 router.get(
   "/api/products/:id",
   asyncHandler(async (req, res) => {
@@ -24,11 +23,9 @@ router.get(
     if (product) {
       res.json(product);
     } else {
-      res.status(404).json({
-        message: "Product not found",
-      });
+      res.status(404);
+      throw new Error("Product not found");
     }
-    res.send(product);
   })
 );
 
