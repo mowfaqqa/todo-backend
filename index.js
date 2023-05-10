@@ -1,18 +1,27 @@
-const express = require("express");
+import express from "express";
+import connectDB from "./db/connect.js";
+import dotenv from "dotenv";
+
+import productRoutes from "./routes/productRoutes.js";
+import userRoutes from "./routes/userRoutes.js";
+import orderRoutes from "./routes/orderRoutes.js";
+import { errorHandler, notFound } from "./middleware/errorMiddleware.js";
+
+dotenv.config();
+const PORT = process.env.PORT || 5000;
 
 const app = express();
-const PORT = process.env.PORT || 5000;
-const todos = require("./routes/todoRoutes");
-const connectDB = require("./db/connect");
-const { getAllTodos } = require("./controllers/todosController");
-require("dotenv").config();
-// MIDDLEWARE
-app.use(express.json());
+
+app.use(express.json())
 
 // ROUTES
-app.get("/", getAllTodos);
+app.use("/api/products", productRoutes);
+app.use("/api/users", userRoutes);
+app.use("/api/order", orderRoutes);
 
-app.use("/api", todos);
+// error handler middleware
+app.use(notFound);
+app.use(errorHandler);
 
 const start = async () => {
   try {
